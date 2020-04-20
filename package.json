@@ -1,0 +1,14 @@
+{
+  "name": "luce-filter",
+  "version": "0.0.0",
+  "description": "Customizable data filter for Lucene queries",
+  "keywords": ["lucene", "filter"],
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": "laggingreflex/luce-filter",
+  "dependencies": {
+    "lucene": "^2.1.1"
+  }
+}
