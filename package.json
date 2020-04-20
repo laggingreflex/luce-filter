@@ -1,8 +1,11 @@
 {
   "name": "luce-filter",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Customizable data filter for Lucene queries",
-  "keywords": ["lucene", "filter"],
+  "keywords": [
+    "lucene",
+    "filter"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "node test"
