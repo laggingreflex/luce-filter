@@ -124,14 +124,12 @@ function defaultFilter(row, { field, term, term_min, term_max, ...rest }) {
         }
       } else if (typeof value === 'number') {
         let sign, num;
-        if (typeof term === 'string') {
-          if (sign = term.match(/^[<=>]+/)) {
-            [sign] = sign;
-          }
-          num = term.match(/[0-9.]+/);
-          if (!num) return false;
-          num = Number(num[0]);
+        if (sign = term.match(/^[<=>]+/)) {
+          [sign] = sign;
         }
+        num = term.match(/[0-9.]+/);
+        if (!num) return false;
+        num = Number(num[0]);
         if (sign) {
           if (sign === '>') {
             return value > num;
