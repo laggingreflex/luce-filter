@@ -75,6 +75,11 @@ function filter(data, query, opts = {}) {
  */
 function defaultFilter(row, { field, term, term_min, term_max, ...rest }) {
   // console.log({ row, field, term, term_min, term_max, rest });
+
+  if (!rest.quoted) {
+    term = term.toLowerCase();
+  }
+
   if (field in row) return check(row[field]);
   else if (field.includes('.')) {
     let value = row;
@@ -96,7 +101,6 @@ function defaultFilter(row, { field, term, term_min, term_max, ...rest }) {
       if (typeof value === 'string') {
         if (!rest.quoted) {
           value = value.toLowerCase();
-          term = term.toLowerCase();
         }
         let terms;
         if (term.includes('*')) {
