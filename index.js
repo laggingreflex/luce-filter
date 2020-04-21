@@ -130,8 +130,7 @@ function defaultFilter(row, { field, term, term_min, term_max, ...rest }) {
           }
           num = term.match(/[0-9.]+/);
           if (!num) return false;
-          num = [num];
-          num = Number(num);
+          num = Number(num[0]);
         }
         if (sign) {
           if (sign === '>') {
