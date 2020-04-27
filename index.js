@@ -88,6 +88,7 @@ function defaultFilter(row, { field, term, term_min, term_max, ...rest }) {
   else if (field.includes('.')) {
     let value = row;
     for (const key of field.split('.')) {
+      if (typeof value !== 'object') return false;
       if (key in value) value = value[key];
       else return false;
     }
