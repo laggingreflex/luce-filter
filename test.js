@@ -31,6 +31,9 @@ query('species:*man', [data[2], data[3], data[4], data[5]], [data[0], data[1]]);
 query('species:h*', [data[2], data[3], data[4], data[5]], [data[0], data[1]]);
 query('name:*an*', [data[2], data[3], data[4]], [data[0], data[1], data[5]]);
 
+// TODO:
+// query('name:an AND NOT wan AND NOT han', [data[2]], [data[1], data[3], data[4], data[5]]);
+
 function query(q, expect = [], notExpect = []) {
   console.log(q);
   const result = filter(data, q);
