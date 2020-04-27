@@ -25,7 +25,11 @@ function filter(data, query, opts = {}) {
 
   /* convert "query:..." string to Lucene AST */
   let ast = query;
-  if (typeof ast === 'string') ast = lucene.parse(ast);
+  try {
+    if (typeof ast === 'string') ast = lucene.parse(ast);
+  } catch (error) {
+    throw new Error(`Error parsing Lucene query "${ast}". ${error.message}`);
+  }
 
   /* "field" indicates a "terminal" point of the AST; this is where the "on" callback is called */
   if (ast.field) return data.filter(row => opts.filter(row, ast));
