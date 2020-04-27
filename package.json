@@ -1,6 +1,6 @@
 {
   "name": "luce-filter",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Customizable data filter for Lucene queries",
   "keywords": [
     "lucene",
