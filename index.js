@@ -80,7 +80,7 @@ function filter(data, query, opts = {}) {
 function defaultFilter(row, { field, term, term_min, term_max, ...rest }) {
   // console.log({ row, field, term, term_min, term_max, rest });
 
-  if (!rest.quoted) {
+  if (!rest.quoted && term) {
     term = term.toLowerCase();
   }
 
