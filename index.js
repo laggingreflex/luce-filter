@@ -165,7 +165,17 @@ function defaultFilter(row, { field, term, term_min, term_max, ...rest }) {
     } else if (term_min || term_max) {
       if (!term_min && term_min !== 0) term_min = -Infinity;
       if (!term_max && term_max !== 0) term_max = Infinity;
-      return term_min < value && value < term_max;
+      if (rest.inclusive === 'both') {
+        return (value >= term_min) && (value <= term_max);
+      } else if (rest.inclusive === 'left') {
+        return (value >= term_min) && (value < term_max);
+      } else if (rest.inclusive === 'right') {
+        return (value > term_min) && (value <= term_max);
+      } else if (rest.inclusive === 'none') {
+        return (value > term_min) && (value < term_max);
+      } else {
+        throw new Error(`Unexpected/unimplemented inclusive clause: '${rest.inclusive}'`);
+      }
     } else {
       throw new Error(`Couldn't find term or term_min/max (Probably unimplemented feature)`);
     }

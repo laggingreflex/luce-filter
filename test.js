@@ -12,6 +12,11 @@ const data = [
 query('name:r', [data[1], data[2]], [data[3], data[4]]);
 query('name:r2 OR name:3po OR name:obi', [data[0], data[1], data[3]], [data[2], data[4]]);
 query('height:[1.4 TO 1.6]', [data[5]], [data[1], data[2], data[3], data[4]]);
+query('height:[1.4 TO 1.6}', [data[5]], [data[1], data[2], data[3], data[4]]);
+query('height:[1.4 TO 1.5}', [], [data[1], data[2], data[3], data[4], data[5]]);
+query('height:{1.4 TO 1.6]', [data[5]], [data[1], data[2], data[3], data[4]]);
+query('height:{1.5 TO 1.6]', [], [data[1], data[2], data[3], data[4], data[5]]);
+query('height:{1.5 TO 1.5}', [], [data[1], data[2], data[3], data[4], data[5]]);
 query('ken', [data[3]], [data[1], data[2], data[4]]);
 query('"ken"', [], [data[1], data[2], data[3], data[4]]);
 query('height:[1.4 TO 1.6] OR ken', [data[3], data[5]], [data[1], data[2], data[4]]);
