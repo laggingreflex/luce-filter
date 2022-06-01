@@ -163,8 +163,8 @@ function defaultFilter(row, { field, term, term_min, term_max, ...rest }) {
         return false;
       }
     } else if (term_min || term_max) {
-      if (!term_min && term_min !== 0) term_min = -Infinity;
-      if (!term_max && term_max !== 0) term_max = Infinity;
+      if ((!term_min && term_min !== 0) || term_min === '*') term_min = -Infinity;
+      if ((!term_max && term_max !== 0) || term_max === '*') term_max = Infinity;
       if (rest.inclusive === 'both') {
         return (value >= term_min) && (value <= term_max);
       } else if (rest.inclusive === 'left') {
