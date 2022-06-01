@@ -9,7 +9,7 @@ const data = [
   { /* 5 */ name: 'Princess Leia', species: 'Human', height: 1.5, misc: {} },
 ];
 
-query('name:r', [data[1], data[2]], [data[3], data[4]]);
+query('name:r', [data[1], data[2], data[5]], [data[3], data[4]]);
 query('name:r2 OR name:3po OR name:obi', [data[0], data[1], data[3]], [data[2], data[4]]);
 query('height:[1.4 TO 1.6]', [data[5]], [data[1], data[2], data[3], data[4]]);
 query('height:[1.4 TO 1.6}', [data[5]], [data[1], data[2], data[3], data[4]]);
@@ -26,7 +26,7 @@ query('family:amidala', [data[2]], [data[1], data[3], data[4], data[5]]);
 query('misc.eye_color:yellow', [data[2]], [data[1], data[3], data[4], data[5]]);
 query('name:an AND NOT name:wan', [data[2], data[4]], [data[1], data[3], data[5]]);
 query('name:an NOT name:wan', [data[2], data[4]], [data[1], data[3], data[5]]);
-query('NOT name:wan', [data[1], data[2], data[4], data[5]], [data[3]]);
+query('NOT name:wan', [data[0], data[1], data[2], data[4], data[5]], [data[3]]);
 query('height:>1.8', [data[2]], [data[1], data[3], data[4], data[5]]);
 query('height:>=1.8', [data[2], data[3], data[4]], [data[1], data[5]]);
 query('species:h*man', [data[2], data[3], data[4], data[5]], [data[0], data[1]]);
@@ -40,13 +40,13 @@ query('name:*an*', [data[2], data[3], data[4]], [data[0], data[1], data[5]]);
 // query('name:an AND NOT wan AND NOT han', [data[2]], [data[1], data[3], data[4], data[5]]);
 
 function query(q, expect = [], notExpect = []) {
-  console.log(q);
   const result = filter(data, q);
-  if (expect.length > result.length) err(`Expected ${expect.length} result item(s), got ${result.length}`);
+  if (expect.length !== result.length) err(`Expected ${expect.length} result item(s), got ${result.length}`, { q, expect, result });
   for (const e of expect)
-    if (!result.includes(e)) err(`Expected above row to exist`, e);
+    if (!result.includes(e)) err(`Expected above row to exist`, { q, expected: e, result });
   for (const e of notExpect)
-    if (result.includes(e)) err(`Expected above row NOT to exist`, e);
+    if (result.includes(e)) err(`Expected above row NOT to exist`, { q, expected: e, result });
+  console.log(`√`, q);
 }
 
 function err(msg, data) {
